@@ -11,7 +11,6 @@ from selenium.common.exceptions import (
     TimeoutException,
     NoSuchElementException,
     ElementClickInterceptedException,
-    InvalidSessionIdException,
     StaleElementReferenceException,
     ElementNotInteractableException,
 )
