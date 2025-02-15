@@ -3,8 +3,9 @@ from time import time
 sys.path.append('E:\\Repositories\\EZWebscraper')
 print(sys.path)
 from selenium.webdriver.common.by import By
-from core.engine.base import RPA_BASE
+from core.webscraper.base import RPA_BASE
 from core.storage.text_file import TextSaver
+from core.summarizer.openai import AISummarize
 
 class MenuBar:
 
@@ -59,5 +60,11 @@ def run():
     return content
 
 if __name__ == "__main__":
+    sum_text = []
     text:list = run()
     TextSaver.to_file(text_list=text, loc='E:\\Repositories\\EZWebscraper\\data', folder_name=str(time()))
+    for article in text:
+        sum_text.append(AISummarize().summarize(text=article))
+    print("\n\n".join(sum_text))
+    TextSaver.to_text(text="\n\n".join(sum_text), loc='E:\\Repositories\\EZWebscraper\\core\\fronten\\sum_data', filename="latest")
+

@@ -38,7 +38,7 @@ class TextSaver:
         for text in text_list:
             filename = f"{folder_direc}\\{text.split("\n")[0]}.txt"
             with open(filename, 'w') as f:
-                try:
+                try: 
                     f.write(text)
                 except Exception as e:
                     print(f"-----------\nFile write `{filename}` failed\n-----------")
